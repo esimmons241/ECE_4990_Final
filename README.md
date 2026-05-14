@@ -1,15 +1,12 @@
-PCB Defect Detection using Deep Learning via U Net
-
-**Automated Quality Control System for Printed Circuit Board Manufacturing**
+PCB Defect Detection using Deep Learning via ResNet-18 with U-Net Segmentation
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![F1-Score](https://img.shields.io/badge/F1--Score-90.2%25-success.svg)]()
+
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 An end-to-end deep learning system for **automated PCB defect detection** that combines computer vision with domain expertise. This project demonstrates the practical application of AI in industrial quality control, achieving **90.2% F1-score** on multi-label defect classification.
 

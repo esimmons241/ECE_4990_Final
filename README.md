@@ -5,13 +5,13 @@ PCB Defect Detection using Deep Learning via U Net
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![F1-Score](https://img.shields.io/badge/F1--Score-91.2%25-success.svg)]()
+[![F1-Score](https://img.shields.io/badge/F1--Score-90.2%25-success.svg)]()
 
 ---
 
 ## 🎯 Project Overview
 
-An end-to-end deep learning system for **automated PCB defect detection** that combines computer vision with domain expertise. This project demonstrates the practical application of AI in industrial quality control, achieving **91.2% F1-score** on multi-label defect classification.
+An end-to-end deep learning system for **automated PCB defect detection** that combines computer vision with domain expertise. This project demonstrates the practical application of AI in industrial quality control, achieving **90.2% F1-score** on multi-label defect classification.
 
 **Built as a portfolio project showcasing:**
 - 🧠 Deep Learning & Computer Vision expertise
@@ -25,7 +25,7 @@ An end-to-end deep learning system for **automated PCB defect detection** that c
 
 ## ⚡ Key Highlights
 
-- ✅ **91.2% F1-Score** on DeepPCB benchmark dataset
+- ✅ **90.2% F1-Score** on DeepPCB benchmark dataset
 - 🎯 **6 Defect Types:** Open circuits, shorts, mousebites, spurs, spurious copper, pin-holes
 - ⚙️ **Real-time inference:** 20ms per image (50 images/second)
 - 📈 **Stable training:** Dropout + Weight Decay regularization
@@ -65,9 +65,9 @@ Quality Control Report
 
 | Metric | Score | Industry Target |
 |--------|-------|-----------------|
-| **F1 Score** | **91.2%** | 85-95% ✅ |
-| **Precision** | 86.2% | >80% ✅ |
-| **Recall** | 98.3% | >95% ✅ |
+| **F1 Score** | **90.2%** | 85-95% ✅ |
+| **Precision** | 83.4% | >80% ✅ |
+| **Recall** | 99.8% | >95% ✅ |
 | **Inference Time** | 20ms/image | <100ms ✅ |
 
 ![Training Curves](results/complete_training_comparison.png)
@@ -76,12 +76,12 @@ Quality Control Report
 
 | Defect Type | F1 Score | Notes |
 |-------------|----------|-------|
-| **Open Circuit** | 97.7% | Excellent detection ⭐ |
-| **Short Circuit** | 87.7% | Good performance |
+| **Open Circuit** | 98.5% | Excellent detection ⭐ |
+| **Short Circuit** | 87.1% | Good performance |
 | **Mousebite** | 90.5% | Strong recall |
-| **Spur** | 85.3% | Challenging class |
-| **Spurious Copper** | 95.7% | Very good |
-| **Pin-hole** | 93.2% | Excellent precision |
+| **Spur** | 85.5% | Challenging class |
+| **Spurious Copper** | 89.3% | Very good |
+| **Pin-hole** | 93.4% | Excellent precision |
 
 ![Confusion Matrices](results/confusion_matrices_regularized.png)
 
@@ -121,7 +121,7 @@ Quality Control Report
 
 Implemented **Dropout (0.5) + L2 Weight Decay (1e-4)** to prevent overfitting:
 
-**Result:** Training stability improved by 81%
+**Result:** Training stability improved by 51%
 
 ### 2. **Template-Based Quality Reports** 📋
 
@@ -135,7 +135,7 @@ DETECTED DEFECTS: 2
   • SHORT CIRCUIT (Confidence: 94%)
     → Unintended electrical connection
     → Risk: Component damage, fire hazard
-  
+
   • OPEN CIRCUIT (Confidence: 87%)
     → Discontinuity in electrical path
     → Risk: Non-functional board
@@ -150,7 +150,7 @@ RECOMMENDATIONS:
 
 ### 3. **Precision-Recall Optimization** ⚖️
 
-Deliberately prioritized **high recall (98.3%) over precision (86.2%)** because:
+Deliberately prioritized **high recall (99.8%) over precision (83.4%)** because:
 
 | Error Type | Business Impact |
 |-----------|----------------|
@@ -213,20 +213,21 @@ ResNet-18 with regularized classifier head:
 ```
 pcb-defect-detection/
 ├── notebooks/
-│   └── 01_EDA_exploration.ipynb
+│   ├── 01_EDA_exploration.ipynb
+│   ├── 02_model_training.ipynb
+│   ├── 03_threshold_optimization.ipynb
+│   └── 04_genai_integration.ipynb
 ├── src/
 │   └── dataset_utils.py
 ├── models/
 │   ├── best_model.pth
-│   ├── best_model_regularized.pth
-│   └── .....
+│   └── best_model_regularized.pth
 ├── results/
 │   ├── complete_training_comparison.png
 │   ├── confusion_matrices_regularized.png
 │   ├── per_class_performance.png
 │   ├── sample_predictions.png
-│   ├── IEEE_Project_Report.md
-│   └── .....
+│   └── IEEE_Project_Report.md
 ├── DeepPCB/
 ├── requirements.txt
 ├── .gitignore
@@ -325,7 +326,7 @@ Original training showed erratic validation loss with dramatic dips. Solutions t
 | More epochs (20) | ✅ Better convergence |
 | Dropout + Weight Decay | ✅✅ **Significant improvement** |
 
-**Result:** Validation loss std dev reduced by 81%
+**Result:** Validation loss std dev reduced by 51%
 
 ### 3. **Default Threshold Often Optimal**
 
@@ -338,7 +339,7 @@ This indicates:
 
 ### 4. **Business Context > Raw Accuracy**
 
-**Question:** Should we optimize for 92% F1 vs current 91.2%?
+**Question:** Should we optimize for 92% F1 vs current 90.2%?
 
 **Analysis:**
 - Development time: 8+ hours
@@ -354,13 +355,13 @@ This indicates:
 
 ### Cost-Benefit Analysis
 
-| Aspect | Manual Inspection | Our AI System     | Savings |
-|--------|------------------|-------------------|---------|
-| **Setup Cost** | $0 | $2,000            | - |
-| **Annual Labor** | $120K-300K | $10K maintenance  | **$110K-290K/year** |
+| Aspect | Manual Inspection | Our AI System | Savings |
+|--------|------------------|---------------|---------|
+| **Setup Cost** | $0 | $3,000-5,000 | - |
+| **Annual Labor** | $120K-300K | $10K maintenance | **$110K-290K/year** |
 | **Throughput** | 20-30 boards/hour | 2000+ boards/hour | **50-100× faster** |
-| **Detection Rate** | ~85% | **98.3%**         | Fewer field failures |
-| **Consistency** | Varies | 24/7 consistent   | No degradation |
+| **Detection Rate** | ~85% | **99.8%** | Fewer field failures |
+| **Consistency** | Varies | 24/7 consistent | No degradation |
 
 **ROI Timeline:** 6-12 months
 
@@ -441,15 +442,20 @@ This indicates:
 
 ## 📧 Contact
 
-**Fardin Hossain Tanmoy**  
-🎓 MSc Data Science | New York Institute of Technology
-🎓 BEng Electrical & Electronics Engineering | University of Southampton
+**[Your Name]**
+🎓 Electrical & Electronics Engineering Graduate
+💼 Aspiring ML Engineer specializing in Industrial AI
 
-📧 Email: fardintonu@gmail.com
+📧 Email: your.email@example.com
+🔗 LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+🌐 Portfolio: [yourwebsite.com](https://yourwebsite.com)
+📂 GitHub: [github.com/yourusername](https://github.com/yourusername)
 
-🔗 LinkedIn:www.linkedin.com/in/fardin-hossain-tanmoy
+---
 
-📂 GitHub: https://github.com/fardinhossain007
+## 📜 License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 

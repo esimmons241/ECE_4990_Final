@@ -17,7 +17,7 @@ DEFECT_CLASSES = {
 
 DEFECT_COLORS = {
     1: (255, 50, 50),     # open - RED
-    2: (50, 255, 50),     # short - GREEN  
+    2: (50, 255, 50),     # short - GREEN
     3: (50, 150, 255),    # mousebite - BLUE
     4: (255, 220, 50),    # spur - YELLOW
     5: (255, 50, 255),    # copper - MAGENTA
@@ -29,7 +29,7 @@ def parse_annotation(anno_file):
     defects = []
     if not anno_file.exists():
         return defects
-    
+
     try:
         with open(anno_file, 'r') as f:
             for line in f:
@@ -51,12 +51,12 @@ def load_pcb_sample(test_entry, dataset_path):
     parts = test_entry.split()
     img_rel_path = parts[0]
     anno_rel_path = parts[1]
-    
+
     image_id = Path(img_rel_path).stem
     img_dir = Path(img_rel_path).parent
-    
+
     test_img_path = dataset_path / 'PCBData' / img_dir / f"{image_id}_test.jpg"
     temp_img_path = dataset_path / 'PCBData' / img_dir / f"{image_id}_temp.jpg"
     anno_path = dataset_path / 'PCBData' / anno_rel_path
-    
+
     return test_img_path, temp_img_path, anno_path

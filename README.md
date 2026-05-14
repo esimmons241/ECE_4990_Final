@@ -9,8 +9,6 @@ PCB Defect Detection using Deep Learning via ResNet-18 with U-Net Segmentation
 
 An end-to-end deep learning system for **automated PCB defect detection** that combines computer vision with domain expertise. This project demonstrates the practical application of AI in industrial quality control on multi-label defect classification.
 
-![Sample Detection](results/detection_pipeline_4stage.png)
-
 ---
 
 ## System Architecture
@@ -35,61 +33,6 @@ Input PCB Image (640×640px)
          ↓
 Quality Control Report
 ```
-
----
-
-## Performance Metrics
-
-### Overall Performance
-
-| Metric | Score | Industry Target |
-|--------|-------|-----------------|
-| **F1 Score** | **90.2%** | 85-95% ✅ |
-| **Precision** | 83.4% | >80% ✅ |
-| **Recall** | 99.8% | >95% ✅ |
-| **Inference Time** | 20ms/image | <100ms ✅ |
-
-![Training Curves](results/complete_training_comparison.png)
-
-### Per-Class Performance
-
-| Defect Type | F1 Score | Notes |
-|-------------|----------|-------|
-| **Open Circuit** | 98.5% | Excellent detection  |
-| **Short Circuit** | 87.1% | Good performance |
-| **Mousebite** | 90.5% | Strong recall |
-| **Spur** | 85.5% | Challenging class |
-| **Spurious Copper** | 89.3% | Very good |
-| **Pin-hole** | 93.4% | Excellent precision |
-
-![Confusion Matrices](results/confusion_matrices_regularized.png)
-
----
-
-## Visualizations
-
-### Detection Pipeline
-![4-Stage Pipeline](results/detection_pipeline_4stage.png)
-*Complete detection pipeline showing template comparison to AI classification*
-
-### Results Summary
-![Results Grid](results/detection_results_grid.png)
-*Quick summary of detection results across multiple samples*
-
-### Model Predictions
-![Side-by-Side Predictions](results/model_predictions_sidebyside.png)
-*Detailed model predictions with confidence scores*
-
-### Performance Analysis
-![Training Curves](results/complete_training_comparison.png)
-*Training stability comparison between models*
-
-![Confusion Matrices](results/confusion_matrices_regularized.png)
-*Per-class confusion matrices showing detection accuracy*
-
-![Per-Class Performance](results/per_class_performance.png)
-*Detailed precision-recall analysis by defect type*
-
 ---
 
 ### 1. **Regularization Strategy** 
@@ -98,7 +41,7 @@ Implemented **Dropout (0.5) + L2 Weight Decay (1e-4)** to prevent overfitting:
 
 **Result:** Training stability improved by 51%
 
-### 2. **Template-Based Quality Reports** 📋
+### 2. **Template-Based Quality Reports**
 
 Unlike generic AI models (BLIP), we use **domain-specific templates**:
 ```
@@ -169,7 +112,7 @@ ResNet-18 with regularized classifier head:
 - Multi-label output for simultaneous defect detection
 - Sigmoid activation for independent class probabilities
 
-### Training Configuration
+### Training Configuration:
 
 - Epochs: 20 (with early stopping)
 - Batch size: 16
@@ -195,7 +138,7 @@ U-Net with ResNet18 encoder:
 - Total parameters: 14,328,934
 - Trainable parameters: 14,328,934
 
-### Training Configuration
+### Training Configuration:
 
 - Epochs: 20 (with early stopping)
 - Batch size: 16
@@ -238,6 +181,7 @@ U-Net with ResNet18 encoder:
 ### Project Members
 
 Eric J. Simmons, Mohammad I. Khan
+
 Undergraduate Students of California State Polytechnic Univeristy, Pomona
 
 ### Source

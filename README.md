@@ -1,4 +1,4 @@
-# 🔬 PCB Defect Detection using Deep Learning
+PCB Defect Detection using Deep Learning via U Net
 
 **Automated Quality Control System for Printed Circuit Board Manufacturing**
 
